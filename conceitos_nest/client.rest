@@ -1,48 +1,83 @@
 @baseUrl = http://localhost:3000
 
-# RECADOS
-### Lista todos os recados
-GET {{baseUrl}}/recados/
-?limit=10
-&offset=0
-### Lista apenas um recado
-GET {{baseUrl}}/recados/2/
-### Cria um recado
-POST {{baseUrl}}/recados/
+# RECADOS 
+
+### Lista todos os recados 
+GET {{baseUrl}}/recados/ 
+?limit=10 
+&offset=0 
+
+### Lista apenas um recado 
+GET {{baseUrl}}/recados/12/ 
+
+### Cria um recado 
+POST {{baseUrl}}/recados/ 
 Content-Type: application/json
 
 {
-    "texto": "4 NOVO Recado",
-    "de": "Joana",
-    "para": "João"
+  "texto": "4 NOVO Recado", 
+  "deId": 1, 
+  "paraId": 9
+} 
+
+### Atualiza um recado 
+PATCH {{baseUrl}}/recados/4/ 
+Content-Type: application/json
+
+{
+  "texto": "ebaaa",
+  "lido": true
+} 
+### Apaga um recado 
+DELETE {{baseUrl}}/recados/5/
+
+#
+
+# Pessoas 
+### Lista todas as pessoas 
+GET {{baseUrl}}/pessoas/ 
+?limit=10 
+&offset=0 
+
+### Lista apenas uma pessoa 
+GET {{baseUrl}}/pessoas/3/ 
+
+### Cria uma pessoa 
+POST {{baseUrl}}/pessoas/ 
+Content-Type: application/json
+
+{
+  "email": "email7@email.com", 
+  "password": "123456", 
+  "nome": "Teste"
 }
+
 ### Atualiza um recado
-PATCH {{baseUrl}}/recados/2/
+PATCH {{baseUrl}}/pessoas/8/
 Content-Type: application/json
 
 {
-    "texto": "Recado",
-    "lido": true
+    "password": "654321",
+    "nome": "João"
 }
 ### Apaga um recado
-DELETE {{baseUrl}}/recados/2/
+DELETE {{baseUrl}}/pessoas/6/
+
+
+
 
 ### AppControllerGetHello
 
-# @name AppControllerGetHello
-GET {{baseUrl}}/home/hello
+# @name AppControllerGetHello GET {{baseUrl}}/home/hello
 
 ### ExemploDeRota
 
-# @name ExemploDeRota
-GET {{baseUrl}}/home/exemplo/
+# @name ExemploDeRota GET {{baseUrl}}/home/exemplo/
 
 ### ConceitosManualController Home
 
-# @name ConceitosManualControllerHome
-GET {{baseUrl}}/conceitos-manual/
+# @name ConceitosManualControllerHome GET {{baseUrl}}/conceitos-manual/
 
 ### ConceitosAutomaticoController Home
 
-# @name ConceitosAutomaticoControllerHome
-GET {{baseUrl}}/conceitos-automatico/
+# @name ConceitosAutomaticoControllerHome GET {{baseUrl}}/conceitos-automatico/
