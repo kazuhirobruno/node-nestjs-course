@@ -15,8 +15,7 @@ import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
-import { AddHeaderInterceptor } from 'src/common/interceptors/add-header.interceptor';
-import { TimingConnectionInterceptor } from 'src/common/interceptors/timing-connection.interceptor';
+import { AuthTokenInterceptor } from 'src/common/interceptors/auth-token.interceptor';
 
 // CRUD
 // Create -> POST -> Criar um recado
@@ -31,12 +30,11 @@ import { TimingConnectionInterceptor } from 'src/common/interceptors/timing-conn
 // DTO - Data Transfer Object -> Objeto de transferência de dados
 // DTO -> Objeto simples -> Validar dados / Transformar dados
 
+@UseInterceptors(AuthTokenInterceptor)
 @Controller('recados')
-@UseInterceptors(AddHeaderInterceptor)
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
-  @UseInterceptors(TimingConnectionInterceptor)
   @HttpCode(HttpStatus.OK)
   @Get()
   async findAll(@Query() paginationDto: PaginationDto) {
@@ -45,7 +43,6 @@ export class RecadosController {
     return recados;
   }
 
-  @UseInterceptors(AddHeaderInterceptor)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.recadosService.findOne(+id);
