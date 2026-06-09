@@ -7,7 +7,7 @@ import {
 
 @Injectable()
 export class ParseIntIdPipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
+  transform(value: any, metadata: ArgumentMetadata): any {
     if (metadata.type !== 'param' || metadata.data !== 'id') {
       return value;
     }
