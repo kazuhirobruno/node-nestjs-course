@@ -14,8 +14,8 @@ import { PessoasModule } from 'src/pessoas/pessoas.module';
       username: 'postgres',
       database: 'postgres',
       password: '123456',
-      autoLoadEntities: true,
-      synchronize: true,
+      autoLoadEntities: true, // Carrega entidades sem precisar especifica-las
+      synchronize: true, // Sincroniza com o BD. Não deve ser usado em produção
     }),
     RecadosModule,
     PessoasModule,
