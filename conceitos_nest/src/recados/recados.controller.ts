@@ -16,6 +16,7 @@ import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { AddHeaderInterceptor } from 'src/common/interceptors/add-header.interceptor';
+import { TimingConnectionInterceptor } from 'src/common/interceptors/timing-connection.interceptor';
 
 // CRUD
 // Create -> POST -> Criar um recado
@@ -35,6 +36,7 @@ import { AddHeaderInterceptor } from 'src/common/interceptors/add-header.interce
 export class RecadosController {
   constructor(private readonly recadosService: RecadosService) {}
 
+  @UseInterceptors(TimingConnectionInterceptor)
   @HttpCode(HttpStatus.OK)
   @Get()
   async findAll(@Query() paginationDto: PaginationDto) {
@@ -43,6 +45,7 @@ export class RecadosController {
     return recados;
   }
 
+  @UseInterceptors(AddHeaderInterceptor)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.recadosService.findOne(+id);
